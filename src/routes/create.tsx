@@ -1,10 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { seo } from "@/content/seo";
-import { site } from "@/content/site";
 
-const meta = seo["/"];
+const meta = seo["/create"];
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/create")({
   head: () => ({
     meta: [
       { title: meta.title },
@@ -12,22 +11,21 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: meta.title },
       { property: "og:description", content: meta.description },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: "/create" },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: "/create" }],
   }),
-  component: Home,
+  component: Create,
 });
 
-function Home() {
+function Create() {
   return (
     <section className="section-pad mx-auto max-w-[1400px]">
-      <p className="t-kicker text-lavender">{site.tagline}</p>
-      <h1 className="t-display-xl mt-6 text-ivory-50">{site.brandName}</h1>
+      <p className="t-kicker text-lavender">Inquiry</p>
+      <h1 className="t-display-l mt-6 text-ivory-50">Create Their Day</h1>
       <p className="t-body text-muted-ivory mt-6 max-w-[46ch]">
-        Customized, themed children's experiences — {site.region}.
+        Inquiry form arrives in a later build.
       </p>
-      {/* Film scenes arrive in Packet 6+. */}
     </section>
   );
 }
