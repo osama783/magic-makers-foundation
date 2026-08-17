@@ -9,17 +9,17 @@ interface State {
 
 /** Global boundary. Per-route boundaries are Packet 10. */
 export class ErrorBoundary extends Component<Props, State> {
-  state: State = { hasError: false };
+  override state: State = { hasError: false };
 
   static getDerivedStateFromError(): State {
     return { hasError: true };
   }
 
-  componentDidCatch(error: Error, info: ErrorInfo) {
+  override componentDidCatch(error: Error, info: ErrorInfo) {
     console.error(error, info);
   }
 
-  render() {
+  override render() {
     if (!this.state.hasError) return this.props.children;
 
     return (

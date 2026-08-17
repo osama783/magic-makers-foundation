@@ -10,33 +10,102 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as CreateRouteImport } from './routes/create'
+import { Route as ProcessRouteImport } from './routes/process'
+import { Route as AdventuresSlugRouteImport } from './routes/adventures.$slug'
+import { Route as WorldsSlugRouteImport } from './routes/worlds.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreateRoute = CreateRouteImport.update({
+  id: '/create',
+  path: '/create',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProcessRoute = ProcessRouteImport.update({
+  id: '/process',
+  path: '/process',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdventuresSlugRoute = AdventuresSlugRouteImport.update({
+  id: '/adventures/$slug',
+  path: '/adventures/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorldsSlugRoute = WorldsSlugRouteImport.update({
+  id: '/worlds/$slug',
+  path: '/worlds/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/create': typeof CreateRoute
+  '/process': typeof ProcessRoute
+  '/adventures/$slug': typeof AdventuresSlugRoute
+  '/worlds/$slug': typeof WorldsSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/create': typeof CreateRoute
+  '/process': typeof ProcessRoute
+  '/adventures/$slug': typeof AdventuresSlugRoute
+  '/worlds/$slug': typeof WorldsSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/create': typeof CreateRoute
+  '/process': typeof ProcessRoute
+  '/adventures/$slug': typeof AdventuresSlugRoute
+  '/worlds/$slug': typeof WorldsSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/create'
+    | '/process'
+    | '/adventures/$slug'
+    | '/worlds/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/create'
+    | '/process'
+    | '/adventures/$slug'
+    | '/worlds/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/create'
+    | '/process'
+    | '/adventures/$slug'
+    | '/worlds/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  CreateRoute: typeof CreateRoute
+  ProcessRoute: typeof ProcessRoute
+  AdventuresSlugRoute: typeof AdventuresSlugRoute
+  WorldsSlugRoute: typeof WorldsSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +117,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/create': {
+      id: '/create'
+      path: '/create'
+      fullPath: '/create'
+      preLoaderRoute: typeof CreateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/process': {
+      id: '/process'
+      path: '/process'
+      fullPath: '/process'
+      preLoaderRoute: typeof ProcessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/adventures/$slug': {
+      id: '/adventures/$slug'
+      path: '/adventures/$slug'
+      fullPath: '/adventures/$slug'
+      preLoaderRoute: typeof AdventuresSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/worlds/$slug': {
+      id: '/worlds/$slug'
+      path: '/worlds/$slug'
+      fullPath: '/worlds/$slug'
+      preLoaderRoute: typeof WorldsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  CreateRoute: CreateRoute,
+  ProcessRoute: ProcessRoute,
+  AdventuresSlugRoute: AdventuresSlugRoute,
+  WorldsSlugRoute: WorldsSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

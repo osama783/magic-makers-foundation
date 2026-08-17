@@ -7,10 +7,10 @@ export const defaultSeo: SeoEntry = {
   title: "MagicMinds — WE CREATE MAGIC",
   description:
     "MagicMinds creates customized, themed children's party experiences across Boston, MA, RI, and NH.",
-};
+} satisfies Record<string, SeoEntry>;
 
 /** Per-route stubs. No JSON-LD yet (Packet 10). */
-export const seo: Record<string, SeoEntry> = {
+export const seo = {
   "/": defaultSeo,
   "/about": {
     title: "About — MagicMinds",
@@ -28,4 +28,4 @@ export const seo: Record<string, SeoEntry> = {
     title: "Lost the thread — MagicMinds",
     description: "This page could not be found.",
   },
-};
+} satisfies Record<string, SeoEntry>;
