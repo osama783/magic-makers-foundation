@@ -9,28 +9,40 @@ import {
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
+import "@fontsource-variable/fraunces";
+import "@fontsource-variable/inter";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { Providers } from "../app/Providers";
+import { Header } from "../components/layout/Header";
+import { Footer } from "../components/layout/Footer";
+import { StickyCTA } from "../components/layout/StickyCTA";
+import { SkipLink } from "../components/layout/SkipLink";
+import { defaultSeo } from "../content/seo";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
-        </p>
-        <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Go home
-          </Link>
-        </div>
+    <section className="section-pad mx-auto max-w-[1400px]">
+      <p className="t-kicker text-lavender">404</p>
+      <h1 className="t-display-l mt-6 text-ivory-50">Lost the thread</h1>
+      <p className="t-body text-muted-ivory mt-6 max-w-[46ch]">
+        This page doesn't exist. Head back to the start.
+      </p>
+      <div className="mt-8 flex flex-wrap gap-3">
+        <Link
+          to="/"
+          className="t-caption inline-flex min-h-[44px] items-center border border-ivory-50/50 px-5 text-ivory-50"
+        >
+          Go home
+        </Link>
+        <Link
+          to="/create"
+          className="t-caption inline-flex min-h-[44px] items-center border border-lavender px-5 text-ivory-50"
+        >
+          Create Their Day ✦
+        </Link>
       </div>
-    </div>
+    </section>
   );
 }
 
@@ -77,11 +89,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: defaultSeo.title },
+      { name: "description", content: defaultSeo.description },
+      { property: "og:site_name", content: "MagicMinds" },
+      { property: "og:title", content: defaultSeo.title },
+      { property: "og:description", content: defaultSeo.description },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
@@ -119,8 +131,16 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <Providers>
+        <SkipLink />
+        <Header />
+        <main id="main" className="min-h-screen pt-20 pb-24 md:pb-0">
+          {/* Required: nested routes render here — the only transitioning subtree later. */}
+          <Outlet />
+        </main>
+        <Footer />
+        <StickyCTA />
+      </Providers>
     </QueryClientProvider>
   );
 }
