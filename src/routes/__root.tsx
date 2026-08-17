@@ -9,8 +9,16 @@ import {
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
+import "@fontsource-variable/fraunces";
+import "@fontsource-variable/inter";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { Providers } from "../app/Providers";
+import { Header } from "../components/layout/Header";
+import { Footer } from "../components/layout/Footer";
+import { StickyCTA } from "../components/layout/StickyCTA";
+import { SkipLink } from "../components/layout/SkipLink";
+import { defaultSeo } from "../content/seo";
 
 function NotFoundComponent() {
   return (
