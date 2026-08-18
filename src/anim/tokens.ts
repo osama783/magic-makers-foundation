@@ -40,3 +40,11 @@ export const distances = {
 
 export type EaseName = keyof typeof eases;
 export type DurationName = keyof typeof durations;
+
+/** Scroll defaults (additive — Packet 3). */
+export const scroll = {
+  scrub: 1,
+  startDefault: "top 85%",
+  pinScrub: true,
+  kenBurns: distances.kenBurns,
+} as const;
