@@ -14,6 +14,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as CreateRouteImport } from './routes/create'
 import { Route as ProcessRouteImport } from './routes/process'
 import { Route as AdventuresSlugRouteImport } from './routes/adventures.$slug'
+import { Route as DevAssetsRouteImport } from './routes/dev.assets'
 import { Route as WorldsSlugRouteImport } from './routes/worlds.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -41,6 +42,11 @@ const AdventuresSlugRoute = AdventuresSlugRouteImport.update({
   path: '/adventures/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DevAssetsRoute = DevAssetsRouteImport.update({
+  id: '/dev/assets',
+  path: '/dev/assets',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WorldsSlugRoute = WorldsSlugRouteImport.update({
   id: '/worlds/$slug',
   path: '/worlds/$slug',
@@ -53,6 +59,7 @@ export interface FileRoutesByFullPath {
   '/create': typeof CreateRoute
   '/process': typeof ProcessRoute
   '/adventures/$slug': typeof AdventuresSlugRoute
+  '/dev/assets': typeof DevAssetsRoute
   '/worlds/$slug': typeof WorldsSlugRoute
 }
 export interface FileRoutesByTo {
@@ -61,6 +68,7 @@ export interface FileRoutesByTo {
   '/create': typeof CreateRoute
   '/process': typeof ProcessRoute
   '/adventures/$slug': typeof AdventuresSlugRoute
+  '/dev/assets': typeof DevAssetsRoute
   '/worlds/$slug': typeof WorldsSlugRoute
 }
 export interface FileRoutesById {
@@ -70,6 +78,7 @@ export interface FileRoutesById {
   '/create': typeof CreateRoute
   '/process': typeof ProcessRoute
   '/adventures/$slug': typeof AdventuresSlugRoute
+  '/dev/assets': typeof DevAssetsRoute
   '/worlds/$slug': typeof WorldsSlugRoute
 }
 export interface FileRouteTypes {
@@ -80,6 +89,7 @@ export interface FileRouteTypes {
     | '/create'
     | '/process'
     | '/adventures/$slug'
+    | '/dev/assets'
     | '/worlds/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -88,6 +98,7 @@ export interface FileRouteTypes {
     | '/create'
     | '/process'
     | '/adventures/$slug'
+    | '/dev/assets'
     | '/worlds/$slug'
   id:
     | '__root__'
@@ -96,6 +107,7 @@ export interface FileRouteTypes {
     | '/create'
     | '/process'
     | '/adventures/$slug'
+    | '/dev/assets'
     | '/worlds/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -105,6 +117,7 @@ export interface RootRouteChildren {
   CreateRoute: typeof CreateRoute
   ProcessRoute: typeof ProcessRoute
   AdventuresSlugRoute: typeof AdventuresSlugRoute
+  DevAssetsRoute: typeof DevAssetsRoute
   WorldsSlugRoute: typeof WorldsSlugRoute
 }
 
@@ -145,6 +158,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdventuresSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dev/assets': {
+      id: '/dev/assets'
+      path: '/dev/assets'
+      fullPath: '/dev/assets'
+      preLoaderRoute: typeof DevAssetsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/worlds/$slug': {
       id: '/worlds/$slug'
       path: '/worlds/$slug'
@@ -161,6 +181,7 @@ const rootRouteChildren: RootRouteChildren = {
   CreateRoute: CreateRoute,
   ProcessRoute: ProcessRoute,
   AdventuresSlugRoute: AdventuresSlugRoute,
+  DevAssetsRoute: DevAssetsRoute,
   WorldsSlugRoute: WorldsSlugRoute,
 }
 export const routeTree = rootRouteImport

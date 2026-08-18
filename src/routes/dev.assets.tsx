@@ -31,7 +31,7 @@ const doodleNames: DoodleName[] = [
 ];
 
 function DevAssets() {
-  const cover = adventures[0];
+  const cover = adventures[0]!;
 
   return (
     <section className="section-pad mx-auto max-w-[1400px]">

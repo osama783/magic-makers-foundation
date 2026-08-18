@@ -18,7 +18,12 @@ export function Providers({ children }: { children: ReactNode }) {
     registerGsap();
   }, []);
 
-  return <ErrorBoundary>{children}</ErrorBoundary>;
+  return (
+    <ErrorBoundary>
+      <DoodleSprite />
+      {children}
+    </ErrorBoundary>
+  );
 }
 
 export default Providers;
