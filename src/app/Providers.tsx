@@ -1,7 +1,9 @@
 import { useEffect, type ReactNode } from "react";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
+import { DoodleSprite } from "@/components/media/DoodleSprite";
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 import { registerGsap } from "@/anim/registerGsap";
+
 
 /**
  * Wires the global concerns exactly once:
@@ -16,7 +18,12 @@ export function Providers({ children }: { children: ReactNode }) {
     registerGsap();
   }, []);
 
-  return <ErrorBoundary>{children}</ErrorBoundary>;
+  return (
+    <ErrorBoundary>
+      <DoodleSprite />
+      {children}
+    </ErrorBoundary>
+  );
 }
 
 export default Providers;
